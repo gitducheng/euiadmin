@@ -1,15 +1,29 @@
 <template>
-  <div id="login">
+<el-container>
+  <el-header class="header">
+    <img class="logo" src="@/assets/login/logo.png" alt="">
+  </el-header>
+  <el-main>
+    <div id="login">
     <el-row>
       <el-col :span="12" id="login_wrap">
-        <div id="form_space" class="block">
-          <span class="demonstration">默认 Hover 指示器触发</span>
+        <div id="form_space2" class="block">
+          <span class="demonstration">暂留标题</span>
           <el-carousel height="320px">
             <el-carousel-item v-for="item in 4" :key="item">
-              <!-- <h3 class="small">{{ item }}</h3> -->
               <img :src='"@/assets/login/" + item + ".jpg"' alt="">
             </el-carousel-item>
           </el-carousel>
+          <div class="text_panel" v-if="false">
+            <h1>欢迎来到<b>炫彩未来后台管理系统！</b></h1>
+            <ul>
+                <li>客户资源分级分类，销售沟通更精准</li>
+                <li>邀约到访随时查看，管理业绩更轻松</li>
+                <li>校区课时全面纵览，排课调课更便捷</li>
+                <li>课时订单一键导出，财务数据更可靠</li>
+                <li>数据报表自动计数，人工统数不需要</li>
+            </ul>
+          </div>
         </div>
       </el-col>
       <el-col :span="12" id="login_wrap">
@@ -61,6 +75,12 @@
       </el-col>
     </el-row>
   </div>
+  </el-main>
+  <el-footer class="footer">
+        Copyright(C)2013-2020 Inc.All rights reserved.
+    </el-footer>
+</el-container>
+  
 </template>
 <script>
 export default {
@@ -137,9 +157,24 @@ p {
   color: #606266;
 }
 #login {
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  background: url(../../assets/login/body-bg.png) no-repeat;
+  background-size: 100% 100%;
 }
 #form_space {
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 400px;
+  width: 400px;
+  background: url(../../assets/login/left-bg.png) no-repeat;
+  background-size: 100% 100%;
+}
+#form_space2 {
   border-radius: 10px;
   position: absolute;
   top: 0;
@@ -152,7 +187,7 @@ p {
 }
 #login_wrap {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
 }
 .el-carousel__item h3 {
     color: #475669;
@@ -171,6 +206,41 @@ p {
   }
   .demonstration {
     text-align: center;
-display: block;
+    display: block;
+    font-size: 20px;
+    color: #606266;
+  }
+  .header {
+    width: 100%;
+    height: 50px;
+    background: #1b191a;
+    z-index: 3;
+    color: #929292;
+    line-height: 50px;
+  }
+  .footer {
+    width: 100%;
+    height: 50px;
+    background: #1b191a;
+    z-index: 3;
+    color: #929292;
+    text-align: center;
+    line-height: 50px;
+    font-size: 12px;
+  }
+  .el-main {
+    padding: 0;
+  }
+  .logo {
+    vertical-align: middle;
+  }
+  li {
+    list-style: none;
+  }
+  .text_panel {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
   }
 </style>
