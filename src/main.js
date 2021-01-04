@@ -9,8 +9,8 @@ import axios from 'axios'
 import qs from 'qs'
 import '@/assets/EuiAdmin.css'
 Vue.prototype.$qs = qs
-axios.defaults.baseURL = "http://api.euiadmin.com";
-// axios.defaults.baseURL = "http://localhost";
+// axios.defaults.baseURL = "http://api.euiadmin.com";
+axios.defaults.baseURL = "http://localhost";
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 Vue.use(VueCookies)

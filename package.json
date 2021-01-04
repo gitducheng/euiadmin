@@ -42,7 +42,7 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "globals":{
+    "globals": {
       "define": true,
       "tinymce": true,
       "window": true
