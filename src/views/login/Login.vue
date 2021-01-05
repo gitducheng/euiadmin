@@ -8,14 +8,9 @@
     <el-row>
       <el-col :span="12" id="login_wrap">
         <div id="form_space2" class="block">
-          <span class="demonstration">暂留标题</span>
-          <el-carousel height="320px">
-            <el-carousel-item v-for="item in 4" :key="item">
-              <img :src='"@/assets/login/" + item + ".jpg"' alt="">
-            </el-carousel-item>
-          </el-carousel>
-          <div class="text_panel" v-if="false">
-            <h1>欢迎来到<b>炫彩未来后台管理系统！</b></h1>
+          <span class="demonstration" v-if="false">暂留标题</span>
+          <div class="text_panel" v-if="true">
+            <p>欢迎来到<b style="font-size:24px;">炫彩未来后台管理系统！</b></p>
             <ul>
                 <li>客户资源分级分类，销售沟通更精准</li>
                 <li>邀约到访随时查看，管理业绩更轻松</li>
@@ -24,6 +19,11 @@
                 <li>数据报表自动计数，人工统数不需要</li>
             </ul>
           </div>
+          <el-carousel height="320px">
+            <el-carousel-item v-for="item in 4" :key="item">
+              <img :src='"@/assets/login/" + item + ".jpg"' alt="">
+            </el-carousel-item>
+          </el-carousel>
         </div>
       </el-col>
       <el-col :span="12" id="login_wrap">
@@ -182,7 +182,7 @@ p {
   left: 0;
   right: 0;
   margin: auto;
-  height: 400px;
+  /* height: 400px; */
   width: 400px;
 }
 #login_wrap {
@@ -236,11 +236,14 @@ p {
   }
   li {
     list-style: none;
+    font-size: 20px;
   }
   .text_panel {
-    margin-top: 20px;
+    color: #c8bb81;
+    margin-top: 50px;
+    margin-bottom: 20px;
     text-align: center;
-    background-color: #fff;
+    background-color: #363634;
     border-radius: 5px;
   }
 </style>

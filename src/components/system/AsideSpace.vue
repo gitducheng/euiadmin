@@ -21,7 +21,7 @@
         <i class="el-icon-menu" :style="{ color: aside.aside_icon_color }"></i>
         <span slot="title">主页</span>
       </el-menu-item>
-      <el-submenu index="2">
+      <el-submenu index="2" v-if="false">
         <template slot="title">
           <i
             class="el-icon-suitcase"
@@ -36,7 +36,7 @@
         <el-menu-item index="/module/animate">动画</el-menu-item>
         <el-menu-item index="/module/tool">常用工具</el-menu-item>
       </el-submenu>
-      <el-submenu index="3">
+      <el-submenu index="3" v-if="false">
         <template slot="title">
           <i
             class="el-icon-tickets"
@@ -47,7 +47,7 @@
         <el-menu-item index="/module/table">用户表格</el-menu-item>
         <el-menu-item index="/module/table/excel">支持Excel表格</el-menu-item>
       </el-submenu>
-      <el-submenu index="4">
+      <el-submenu index="4" v-if="false">
         <template slot="title">
           <i
             class="el-icon-pie-chart"
@@ -59,7 +59,7 @@
         <el-menu-item index="/echarts/line">折线图</el-menu-item>
         <el-menu-item index="/echarts/map">地图</el-menu-item>
       </el-submenu>
-      <el-submenu index="5">
+      <el-submenu index="5" v-if="false">
         <template slot="title">
           <i
             class="el-icon-monitor"
@@ -74,7 +74,7 @@
         <el-menu-item index="/page/not/found">404页面不存在</el-menu-item>
         <el-menu-item index="/page/warning">500错误页</el-menu-item>
       </el-submenu>
-      <el-submenu index="6">
+      <el-submenu index="6" v-if="false">
         <template slot="title">
           <i
             class="el-icon-goods"
@@ -123,7 +123,7 @@
           >邮箱</el-menu-item
         >
       </el-submenu>
-       <el-submenu index="7">
+       <el-submenu index="7" v-if="false">
         <template slot="title">
           <i
             class="el-icon-basketball"
@@ -134,7 +134,7 @@
         <el-menu-item index="/web/home">网站数据</el-menu-item>
         <el-menu-item index="/web/tags">网站模块管理</el-menu-item>
       </el-submenu>
-      <el-submenu index="8">
+      <el-submenu index="8" v-if="false">
         <template slot="title">
           <i
             class="el-icon-setting"

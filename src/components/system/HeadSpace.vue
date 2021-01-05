@@ -21,7 +21,7 @@
       :active-text-color="head.head_active_text_color"
       :style="{float:'right'}"
     >
-      <el-menu-item index="3" @click="message()">
+      <el-menu-item index="3" @click="message()" v-if="false">
         <i class="el-icon-bell" :style="{color:head.head_icon_color}" />
         <el-badge is-dot class="item"></el-badge>
       </el-menu-item>

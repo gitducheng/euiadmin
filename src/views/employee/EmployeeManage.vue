@@ -1,19 +1,14 @@
 <template>
-  <div>
-    暂留用作欢迎首页内容
-  </div>
+    <div>
+        employee
+    </div>
 </template>
-
 <script>
 export default {
   data() {
-    return {};
-  },
-  methods: {
-   
-  },
-  mounted() {
-    
+    return {
+      
+    };
   },
 };
 </script>

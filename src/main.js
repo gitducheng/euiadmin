@@ -17,7 +17,7 @@ Vue.use(VueCookies)
 Vue.use(Element)
 Vue.config.productionTip = false
 
-import components from './plugins/Component'//加载公共组件
+import components from './plugins/Component'//加载公共组件，可直接通过“v+组件名”形式调用
 Object.keys(components).forEach((key) => {
   var name = key.replace(/(\w)/, (v) => v.toUpperCase())
   Vue.component('v'+name, components[key])
