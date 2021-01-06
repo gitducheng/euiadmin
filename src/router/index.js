@@ -328,6 +328,27 @@ const routes = [{
       vist_label: ['super_admin', 'admin']
     },
   },
+  // 员工
+  {
+    path: '/employee/manage',
+    name: 'employee_manage',
+    component: resolve => require(['@/views/employee/EmployeeManage.vue'], resolve),
+    meta: {
+      title: '员工管理',
+      login_state: true,
+      vist_label: ['super_admin', 'admin']
+    },
+  },
+  {
+    path: '/employee/register',
+    name: 'employee_register',
+    component: resolve => require(['@/views/employee/EmployeeManage.vue'], resolve),
+    meta: {
+      title: '员工注册',
+      login_state: true,
+      vist_label: ['super_admin', 'admin']
+    },
+  },
 ]
 
 const router = new VueRouter({

@@ -153,6 +153,17 @@
           <el-menu-item index="/setting/password">密码设置</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
+      <el-submenu index="9">
+          <template slot="title">
+            <i
+              class="el-icon-tickets"
+              :style="{ color: aside.aside_icon_color }"
+            ></i>
+            <span>员工信息管理</span>
+          </template>
+          <el-menu-item index="/employee/manage">员工管理</el-menu-item>
+          <el-menu-item index="/employee/register">暂留入口</el-menu-item>
+        </el-submenu>
     </el-menu>
   </el-aside>
 </template>
