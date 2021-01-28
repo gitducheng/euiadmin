@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="24">
-        <div class="emp_title">员工管理</div>
+        <div class="emp_title">员工注册</div>
       </el-col>
     </el-row>
     <div>
@@ -72,7 +72,7 @@
           </div>
         </el-col>
         <el-col :span="8" class="emp_item emp_item_8">
-          <label for="" class="emp_item_label">在职状态：</label>
+          <label for="" class="emp_item_label">联系电话：</label>
           <div class="emp_item_content">
             <el-select v-model="value" placeholder="请选择">
               <el-option
@@ -100,7 +100,7 @@
           </div>
         </el-col>
         <el-col :span="12" class="emp_item emp_item_12">
-          <label for="" class="emp_item_label">离职时间：</label>
+          <label for="" class="emp_item_label">毕业时间：</label>
           <div class="emp_item_content">
             <el-col :span="11">
               <el-date-picker type="date" placeholder="选择日期" v-model="value" style="width: 100%;"></el-date-picker>
@@ -113,30 +113,9 @@
         </el-col>
       </el-row>
       <el-row class="emp_query_btn">
-        <el-button type="primary">查询</el-button>
+        <el-button type="primary">提交</el-button>
         <el-button>重置</el-button>
       </el-row>
-    </div>
-    <div class="emp_table">
-      <el-table
-        :data="tableData"
-        stripe
-        style="width: 100%">
-        <el-table-column
-          prop="date"
-          label="日期"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址">
-        </el-table-column>
-      </el-table>
     </div>
   </div>
 </template>
@@ -154,23 +133,6 @@ export default {
           label: "双皮奶",
         }
       ],
-      tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
       value: "",
     };
   },
@@ -202,10 +164,6 @@ export default {
     &_content {
       padding-left: 80px;
     }
-  }
-
-  &_table {
-    margin-top: 50px;
   }
 
   &_query_btn {

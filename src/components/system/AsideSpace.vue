@@ -154,16 +154,26 @@
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="9">
-          <template slot="title">
-            <i
-              class="el-icon-tickets"
-              :style="{ color: aside.aside_icon_color }"
-            ></i>
-            <span>员工信息管理</span>
-          </template>
-          <el-menu-item index="/employee/manage">员工管理</el-menu-item>
-          <el-menu-item index="/employee/register">暂留入口</el-menu-item>
-        </el-submenu>
+        <template slot="title">
+          <i
+            class="el-icon-tickets"
+            :style="{ color: aside.aside_icon_color }"
+          ></i>
+          <span>员工信息管理</span>
+        </template>
+        <el-menu-item index="/employee/manage">员工管理</el-menu-item>
+        <el-menu-item index="/employee/register">员工注册</el-menu-item>
+      </el-submenu>
+      <el-submenu index="10">
+        <template slot="title">
+          <i
+            class="el-icon-tickets"
+            :style="{ color: aside.aside_icon_color }"
+          ></i>
+          <span>客户信息管理</span>
+        </template>
+        <el-menu-item index="/client/manage">客户管理</el-menu-item>
+      </el-submenu>
     </el-menu>
   </el-aside>
 </template>

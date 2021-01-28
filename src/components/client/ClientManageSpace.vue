@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="24">
-        <div class="emp_title">员工管理</div>
+        <div class="emp_title">客户管理</div>
       </el-col>
     </el-row>
     <div>

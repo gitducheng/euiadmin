@@ -342,9 +342,20 @@ const routes = [{
   {
     path: '/employee/register',
     name: 'employee_register',
-    component: resolve => require(['@/views/employee/EmployeeManage.vue'], resolve),
+    component: resolve => require(['@/views/employee/EmployeeRegister.vue'], resolve),
     meta: {
       title: '员工注册',
+      login_state: true,
+      vist_label: ['super_admin', 'admin']
+    },
+  },
+  // 客户
+  {
+    path: '/client/manage',
+    name: 'client_manage',
+    component: resolve => require(['@/views/client/ClientManage.vue'], resolve),
+    meta: {
+      title: '客户管理',
       login_state: true,
       vist_label: ['super_admin', 'admin']
     },
