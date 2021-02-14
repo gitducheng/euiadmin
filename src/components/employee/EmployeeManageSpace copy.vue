@@ -42,6 +42,76 @@
           </div>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="8" class="emp_item emp_item_8">
+          <label for="" class="emp_item_label">职级：</label>
+          <div class="emp_item_content">
+            <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </div>
+        </el-col>
+        <el-col :span="8" class="emp_item emp_item_8">
+          <label for="" class="emp_item_label">合同类型：</label>
+          <div class="emp_item_content">
+            <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </div>
+        </el-col>
+        <el-col :span="8" class="emp_item emp_item_8">
+          <label for="" class="emp_item_label">在职状态：</label>
+          <div class="emp_item_content">
+            <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12" class="emp_item emp_item_12">
+          <label for="" class="emp_item_label">入职时间：</label>
+          <div class="emp_item_content">
+            <el-col :span="11">
+              <el-date-picker type="date" placeholder="选择日期" v-model="value" style="width: 100%;"></el-date-picker>
+            </el-col>
+            <el-col class="line" :span="2">-</el-col>
+            <el-col :span="11">
+              <el-time-picker placeholder="选择时间" v-model="value" style="width: 100%;"></el-time-picker>
+            </el-col>
+          </div>
+        </el-col>
+        <el-col :span="12" class="emp_item emp_item_12">
+          <label for="" class="emp_item_label">离职时间：</label>
+          <div class="emp_item_content">
+            <el-col :span="11">
+              <el-date-picker type="date" placeholder="选择日期" v-model="value" style="width: 100%;"></el-date-picker>
+            </el-col>
+            <el-col class="line" :span="2">-</el-col>
+            <el-col :span="11">
+              <el-time-picker placeholder="选择时间" v-model="value" style="width: 100%;"></el-time-picker>
+            </el-col>
+          </div>
+        </el-col>
+      </el-row>
       <el-row class="emp_query_btn">
         <el-button type="primary" @click="findByConditions()">查询</el-button>
         <el-button>重置</el-button>
@@ -71,13 +141,6 @@
           label="邮箱">
         </el-table-column>
       </el-table>
-      <el-pagination
-        :page-size="20"
-        :pager-count="11"
-        class="emp_pagination"
-        layout="prev, pager, next"
-        :total="100">
-      </el-pagination>
     </div>
   </div>
 </template>
@@ -170,11 +233,6 @@ export default {
   &_query_btn {
     text-align: center;
   }
-
-  &_pagination {
-    float: right;
-  }
-
 }
 .line {
   line-height: 40px;

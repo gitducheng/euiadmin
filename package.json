@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "echarts": "^4.9.0",
     "element-ui": "^2.4.5",
+    "qs": "^6.9.6",
     "tinymce": "^5.4.2",
     "vue": "^2.6.11",
     "vue-axios": "^3.0.1",
@@ -50,7 +51,12 @@
       "window": true
     },
     "rules": {
-      "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }]
+      "vue/no-parsing-error": [
+        2,
+        {
+          "x-invalid-end-tag": false
+        }
+      ]
     }
   },
   "browserslist": [

@@ -20,6 +20,7 @@
       :text-color="head.head_text_color"
       :active-text-color="head.head_active_text_color"
       :style="{float:'right'}"
+      @select="handleSelect"
     >
       <el-menu-item index="3" @click="message()" v-if="false">
         <i class="el-icon-bell" :style="{color:head.head_icon_color}" />
@@ -39,8 +40,8 @@
           <el-avatar :src="user.user_avatar_url"></el-avatar>
         </template>
         <el-menu-item index="2-1">个人中心</el-menu-item>
-        <el-menu-item index="2-2">修改密码</el-menu-item>
-        <el-menu-item index="2-3">退出</el-menu-item>
+        <el-menu-item index="/setting/password">修改密码</el-menu-item>
+        <el-menu-item index="/">退出</el-menu-item>
       </el-submenu>
       <el-menu-item index="10">
         <HeadSettingSpace />
@@ -113,6 +114,9 @@ export default {
         }
       }
       this.fullscreen = !this.fullscreen; //判断全屏状态
+    },
+    handleSelect (key) {
+      this.$router.push(key)
     },
   },
 };

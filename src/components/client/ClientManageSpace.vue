@@ -7,14 +7,14 @@
     </el-row>
     <div>
       <el-row>
-        <el-col :span="8" class="emp_item emp_item_8">
-          <label for="" class="emp_item_label">姓名：</label>
+        <el-col :span="12" class="emp_item emp_item_8">
+          <label for="" class="emp_item_label">客户姓名：</label>
           <div class="emp_item_content">
-            <el-input v-model="value" placeholder="请输入内容"></el-input>
+            <el-input v-model="clientName" placeholder="请输入内容"></el-input>
           </div>
         </el-col>
-        <el-col :span="8" class="emp_item emp_item_8">
-          <label for="" class="emp_item_label">岗位：</label>
+        <el-col :span="8" class="emp_item emp_item_8" v-if="false">
+          <label for="" class="emp_item_label">推荐人：</label>
           <div class="emp_item_content">
             <el-select v-model="value" placeholder="请选择">
               <el-option
@@ -25,123 +25,74 @@
               >
               </el-option>
             </el-select>
-          </div>
-        </el-col>
-        <el-col :span="8" class="emp_item emp_item_8">
-          <label for="" class="emp_item_label">学历：</label>
-          <div class="emp_item_content">
-            <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8" class="emp_item emp_item_8">
-          <label for="" class="emp_item_label">职级：</label>
-          <div class="emp_item_content">
-            <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </el-col>
-        <el-col :span="8" class="emp_item emp_item_8">
-          <label for="" class="emp_item_label">合同类型：</label>
-          <div class="emp_item_content">
-            <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </el-col>
-        <el-col :span="8" class="emp_item emp_item_8">
-          <label for="" class="emp_item_label">在职状态：</label>
-          <div class="emp_item_content">
-            <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12" class="emp_item emp_item_12">
-          <label for="" class="emp_item_label">入职时间：</label>
-          <div class="emp_item_content">
-            <el-col :span="11">
-              <el-date-picker type="date" placeholder="选择日期" v-model="value" style="width: 100%;"></el-date-picker>
-            </el-col>
-            <el-col class="line" :span="2">-</el-col>
-            <el-col :span="11">
-              <el-time-picker placeholder="选择时间" v-model="value" style="width: 100%;"></el-time-picker>
-            </el-col>
-          </div>
-        </el-col>
-        <el-col :span="12" class="emp_item emp_item_12">
-          <label for="" class="emp_item_label">离职时间：</label>
-          <div class="emp_item_content">
-            <el-col :span="11">
-              <el-date-picker type="date" placeholder="选择日期" v-model="value" style="width: 100%;"></el-date-picker>
-            </el-col>
-            <el-col class="line" :span="2">-</el-col>
-            <el-col :span="11">
-              <el-time-picker placeholder="选择时间" v-model="value" style="width: 100%;"></el-time-picker>
-            </el-col>
           </div>
         </el-col>
       </el-row>
       <el-row class="emp_query_btn">
-        <el-button type="primary">查询</el-button>
-        <el-button>重置</el-button>
+        <el-button @click="findClientsByCondition">查询</el-button>
+        <el-button type="primary" @click="addClient">新增</el-button>
       </el-row>
     </div>
     <div class="emp_table">
       <el-table
-        :data="tableData"
-        stripe
+        :data="allClientsData"
         style="width: 100%">
         <el-table-column
-          prop="date"
-          label="日期"
-          width="180">
+          prop="customerName"
+          label="客户姓名"
+          width="80">
         </el-table-column>
         <el-table-column
-          prop="name"
-          label="姓名"
-          width="180">
+          prop="age"
+          label="年龄">
         </el-table-column>
         <el-table-column
-          prop="address"
-          label="地址">
+          prop="mobile"
+          label="联系电话">
+        </el-table-column>
+        <el-table-column
+          prop="parentName"
+          label="亲属姓名">
+        </el-table-column>
+        <el-table-column
+          prop="parentMobile"
+          label="亲属电话">
+        </el-table-column>
+        <el-table-column
+          prop="createUsername"
+          label="创建人">
+        </el-table-column>
+        <el-table-column
+          prop="channelOne"
+          label="渠道一">
+        </el-table-column>
+        <el-table-column
+          prop="channelTwo"
+          label="渠道二">
+        </el-table-column>
+        <el-table-column
+          width="180px"
+          label="操作">
+          <template slot-scope="scope">
+            <el-button type="info" plain @click="checkClientInfo(scope.row)" size="small">查看</el-button>
+            <el-button type="primary" plain @click="editClientInfo(scope.row)" size="small">编辑</el-button>
+          </template>
         </el-table-column>
       </el-table>
     </div>
+    <CheckClientInfo :checkDrawer="checkDrawer" :clientInfo="clientInfo" @upCheckDrawer="upCheckDrawer" />
+    <EditClientInfo :editDialog="editDialog" :clientInfo="clientInfo" @upEditDialog="upEditDialog" />
+    <AddClientInfo :addDialog="addDialog" @upAddDialog="upAddDialog" />
   </div>
 </template>
 <script>
+import { getAllClients, getClientsByCondition } from '@/api'
 export default {
+  components: {
+    CheckClientInfo:resolve=>{require(['@/components/client/module/CheckClientInfo'],resolve)},
+    EditClientInfo:resolve=>{require(['@/components/client/module/EditClientInfo'],resolve)},
+    AddClientInfo:resolve=>{require(['@/components/client/module/AddClientSpace'],resolve)},
+  },
   data() {
     return {
       options: [
@@ -154,26 +105,71 @@ export default {
           label: "双皮奶",
         }
       ],
-      tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
+      allClientsData: [
+        {
+          age: 18,
+          channelOne: "微信",
+          channelTwo: "美团",
+          createUsername: "user1",
+          customerName: "张三",
+          followUpStatus: 1,
+          gender: 1,
+          grade: 1,
+          id: 1,
+          interestDegree: 2,
+          mobile: "183",
+          parentMobile: "121",
+          parentName: "parent3",
+          relation: "非亲属",
+          school: "hebei",
+          status: 1
+        }
+      ],
       value: "",
+      clientName: "",
+      clientInfo: "",
+      checkDrawer: false,
+      editDialog: false,
+      addDialog: false,
     };
   },
+  created() {
+    this.onGetAllClients()
+  },
+  methods: {
+    onGetAllClients() {
+      getAllClients()
+      .then((res) => {
+        this.allClientsData = res.data
+      })
+    },
+    findClientsByCondition() {
+      getClientsByCondition({customerName: this.clientName})
+      .then((res) => {
+        this.allClientsData = new Array(res.data)
+      })
+    },
+    checkClientInfo(clientInfo) {
+      this.clientInfo = clientInfo
+      this.checkDrawer = true
+    },
+    editClientInfo(clientInfo) {
+      this.clientInfo = clientInfo
+      this.editDialog = true
+    },
+    addClient() {
+      this.addDialog = true
+    },
+    upCheckDrawer(val) {
+      this.checkDrawer = val
+    },
+    upEditDialog(val) {
+      this.editDialog = val
+    },
+    upAddDialog(val) {
+      this.addDialog = val
+    },
+  }
 };
 </script>
 <style lang="scss" scoped>

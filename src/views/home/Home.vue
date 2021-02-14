@@ -54,7 +54,7 @@ export default {
     },
   },
   mounted() {
-    this.get_update_news();
+    // this.get_update_news();
   },
 };
 </script>

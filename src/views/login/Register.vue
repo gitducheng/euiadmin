@@ -6,56 +6,94 @@
         <p>{{register_adress}}</p>
       </div>
       <div style="padding:20px">
-        <el-form ref="form" :model="register_form">
-          <el-form-item>
+        <el-form ref="form" :model="register_form" label-width="80px">
+          <el-form-item label="用户名">
             <el-input
-              v-model="register_form.user_pet_name"
+              v-model="register_form.username"
               prefix-icon="el-icon-user"
               placeholder="请输入用户昵称"
             ></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item label="邮箱">
             <el-input
-              v-model="register_form.user_email"
+              v-model="register_form.email"
               prefix-icon="el-icon-message"
               placeholder="请输入邮箱"
             ></el-input>
           </el-form-item>
-          <el-form-item>
-            <el-row :gutter="16">
-              <el-col :span="16">
-                <el-input
-                  v-model="register_form.user_email_code"
-                  prefix-icon="el-icon-key"
-                  placeholder="请输入邮箱验证码"
-                ></el-input>
-              </el-col>
-              <el-col :span="8">
-                <el-button
-                  :disabled="verify_button_data.button_state"
-                  @click="verify_code()"
-                >{{verify_button_data.button_title}}</el-button>
-              </el-col>
-            </el-row>
-          </el-form-item>
-          <el-form-item>
+          <el-form-item label="salt">
             <el-input
-              v-model="register_form.user_password"
-              prefix-icon="el-icon-lock"
-              show-password
-              placeholder="请输入用户密码"
+              v-model="register_form.salt"
+              prefix-icon="el-icon-key"
+              placeholder="请输入salt"
             ></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item label="密码">
             <el-input
-              v-model="register_form.user_password_verify"
+              v-model="register_form.hashedPassword"
               prefix-icon="el-icon-lock"
               show-password
-              placeholder="请再次输入用户密码"
+              placeholder="请输入密码"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="postNum">
+            <el-input
+              v-model="register_form.postNum"
+              prefix-icon="el-icon-lock"
+              show-password
+              placeholder="请输入postNum"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="teacherCertificateNum">
+            <el-input
+              v-model="register_form.teacherCertificateNum"
+              prefix-icon="el-icon-key"
+              placeholder="请输入teacherCertificateNum"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="star">
+            <el-input
+              v-model="register_form.star"
+              prefix-icon="el-icon-key"
+              placeholder="请输入star"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="gender">
+            <el-input
+              v-model="register_form.gender"
+              prefix-icon="el-icon-key"
+              placeholder="请输入gender"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="orgNum">
+            <el-input
+              v-model="register_form.orgNum"
+              prefix-icon="el-icon-key"
+              placeholder="请输入orgNum"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="phone">
+            <el-input
+              v-model="register_form.phone"
+              prefix-icon="el-icon-key"
+              placeholder="请输入phone"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="idNum">
+            <el-input
+              v-model="register_form.idNum"
+              prefix-icon="el-icon-key"
+              placeholder="请输入idNum"
+            ></el-input>
+          </el-form-item><el-form-item label="fullName">
+            <el-input
+              v-model="register_form.fullName"
+              prefix-icon="el-icon-key"
+              placeholder="请输入fullName"
             ></el-input>
           </el-form-item>
           <el-form-item align="center">
-            <el-button type="success" icon="el-icon-back" @click="register()">注册</el-button>
+            <el-button type="success" icon="el-icon-user" @click="register()">注册</el-button>
           </el-form-item>
           <el-form-item>
             <el-link type="danger" style="float:left" @click="to('/')">登录</el-link>
@@ -67,49 +105,44 @@
   </div>
 </template>
 <script>
+import { toRegister } from '@/api'
 export default {
   data() {
     return {
-      register_title: "EuiAdmin",
-      register_adress: "EuiAdmin注册模板，极简超强开源的vue框架",
-      verify_button_data: {
-        button_title: "获取验证码",
-        button_state: false,
-      },
+      register_title: "炫彩未来教育",
+      register_adress: "炫彩未来教育，您的友好伙伴",
       register_form: {
-        user_pet_name: "",
-        user_email: "",
-        user_email_code: "",
-        user_password: "",
-        user_password_verify: "",
+        username: "ducheng",
+        hashedPassword: "123456",
+        salt: "salt_ducheng",
+        orgNum: 1000,
+        postNum: "postNum_ducheng",
+        teacherCertificateNum: "teacherCertificateNum_ducheng",
+        star: 5,
+        fullName: "fullName_ducheng",
+        idNum: "idNum_ducheng",
+        gender: 2,
+        phone: "13811789999",
+        email: "13811789999@qq.com"
       },
       remember_password: false,
     };
   },
   methods: {
     register() {
-      this.$message.success("注册成功");
-      setTimeout(() => {
-        this.$router.push("/");
-      }, 1500);
-    },
-    verify_code() {
-      this.$message.success("验证码发送成功请您查看邮箱");
-      this.verify_button_data.button_title = 60;
-      this.verify_button_data.button_state = true;
-      this.count_time_down();
-    },
-    count_time_down() {
-      if (this.verify_button_data.button_title != 0) {
-        setTimeout(() => {
-          this.verify_button_data.button_title =
-            this.verify_button_data.button_title - 1;
-          this.count_time_down();
-        }, 1000);
-      } else {
-        this.verify_button_data.button_title = "再次获取验";
-        this.verify_button_data.button_state = false;
-      }
+      toRegister(this.register_form)
+      .then((res) => {
+        console.log(res)
+        if (res.success == true) {
+          this.$message.success("注册成功");
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 1500);
+        }
+      })
+      .catch((err) => {
+        this.$message.error("注册失败: " + err);
+      })
     },
     to(link){
       this.$router.push(link)

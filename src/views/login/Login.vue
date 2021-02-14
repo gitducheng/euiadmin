@@ -36,13 +36,13 @@
             <el-form ref="form" :model="login_form">
               <el-form-item>
                 <el-input
-                  v-model="login_form.user_name"
+                  v-model="login_form.username"
                   prefix-icon="el-icon-user"
                 ></el-input>
               </el-form-item>
               <el-form-item>
                 <el-input
-                  v-model="login_form.user_password"
+                  v-model="login_form.password"
                   prefix-icon="el-icon-lock"
                   show-password
                 ></el-input>
@@ -55,7 +55,7 @@
                   >登录</el-button
                 >
               </el-form-item>
-              <el-form-item v-if="false">
+              <el-form-item>
                 <el-link
                   type="danger"
                   style="float: left"
@@ -83,26 +83,36 @@
   
 </template>
 <script>
+import { toLogin } from '@/api/index'
 export default {
   data() {
     return {
       login_title: "炫彩未来教育",
       login_adress: "炫彩未来教育，定制您的课程",
       login_form: {
-        user_name: "EuiAdmin",
-        user_password: "12346",
+        username: "admin",
+        password: "admin@123",
       },
       remember_password: false,
     };
   },
   methods: {
     login() {
-      sessionStorage.setItem("user_login", "login");
-      sessionStorage.setItem("user_label", "super_admin");
-      this.$message.success("登录成功");
-      setTimeout(() => {
-        this.$router.push("/home");
-      }, 1500);
+      toLogin(this.login_form)
+      .then((res) => {
+        console.log(res)
+        if(res.success == true){
+          sessionStorage.setItem("user_login", "login");
+          sessionStorage.setItem("user_label", "super_admin");
+          this.$message.success("登录成功");
+          setTimeout(() => {
+            this.$router.push("/home");
+          }, 1500);
+        }
+      })
+      .catch((err) => {
+        this.$message.error(err)
+      })
     },
     to(link) {
       this.$router.push(link);
@@ -131,7 +141,7 @@ export default {
         this.$cookies.set("vist_label", "null", -1);
         this.$axios({
           method: "post",
-          url: "/vist/ip",
+          url: "/api/vist/ip",
           data: this.$qs.stringify({
             vist_label: this.$cookies.get("vist_label"),
           }),
